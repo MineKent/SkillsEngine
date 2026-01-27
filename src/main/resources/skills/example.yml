@@ -1,0 +1,41 @@
+# Пример умения (skill)
+# Полная шпаргалка по всем типам и параметрам: _template.yml
+
+id: example
+name: "Example Skill"
+
+trigger:
+  type: COMMAND
+  command: "example"
+
+# Цели (target.type): SELF | TARGET | AREA
+# Для TARGET доступно: range
+# Для AREA доступно: radius, center
+
+target:
+  type: SELF
+
+cooldown: 5s
+
+conditions:
+  # Условия (conditions[].type): HAS_PERMISSION | LEVEL_AT_LEAST | HAS_ITEM | WORLD_ALLOWED
+  - type: HAS_PERMISSION
+    permission: "skillsengine.example"
+
+actions:
+  # Действия (actions[].type): DAMAGE | HEAL | POTION | DASH | PARTICLES | SOUND | MESSAGE | ACTIONBAR | TITLE | COMMAND | TELEPORT | KNOCKBACK | PULL | SET_FIRE | EXPLOSION | GIVE_ITEM | TAKE_ITEM | SPAWN_ENTITY
+  - type: PARTICLES
+    particle: "CRIT"
+    count: 10
+    offset: 0.2
+  - type: SOUND
+    sound: "ENTITY_PLAYER_LEVELUP"
+    volume: 1.0
+    pitch: 1.0
+
+  - type: ACTIONBAR
+    text: "&aCast &f{skill}&a by &f{player}"
+
+  - type: GIVE_ITEM
+    material: "EMERALD"
+    amount: 1
