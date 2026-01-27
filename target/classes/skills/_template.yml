@@ -1,0 +1,149 @@
+# SkillsEngine — шаблон / шпаргалка
+# Скопируй этот файл, переименуй и меняй значения под себя.
+#
+# Ключи верхнего уровня:
+# id: <строка>                  # уникальный id (если не указан — берётся из имени файла)
+# name: <строка>
+# type: <строка>                # опционально, любая строка (для своих категорий)
+# cooldown: <время>             # пример: 500ms, 10s, 2m, 1h (или просто число = секунды)
+# denyMessage: <строка>         # опционально: сообщение игроку при отказе в касте
+# (requireGiven удалён из движка: раньше планировался флаг "скилл должен быть выдан", но не был реализован)
+#
+# trigger (триггер):
+#   type: COMMAND | RIGHT_CLICK | LEFT_CLICK | ON_HIT | ON_DAMAGE
+#   # Только для COMMAND:
+#   command: "example"           # игрок пишет /example (команда перехватывается плагином)
+#   # Для RIGHT_CLICK/LEFT_CLICK (опционально):
+#   material: "DIAMOND_SWORD"    # срабатывает только если в руке этот материал
+#
+# target (цель):
+#   type: SELF | TARGET | AREA
+#   # Только для TARGET:
+#   range: 4.5                   # дальность в блоках
+#   # Только для AREA:
+#   radius: 3.0                  # радиус в блоках
+#   center: "CASTER"             # CASTER (по умолчанию) или TARGET (если цель уже известна)
+#
+# conditions (условия, выполняются по порядку):
+#   - type: HAS_PERMISSION
+#     permission: "my.perm.node"
+#   - type: LEVEL_AT_LEAST
+#     min: 10                    # синоним: level (используется ванильный уровень игрока: Player#getLevel)
+#   - type: HAS_ITEM
+#     material: "GOLD_INGOT"
+#     amount: 3
+#     where: "INVENTORY"         # INVENTORY (по умолчанию) или HAND/MAIN_HAND
+#   - type: WORLD_ALLOWED
+#     allowed: ["world", "world_nether"]   # опционально: белый список
+#     denied: ["arena"]                     # опционально: чёрный список
+#
+# cost (стоимость, опционально). В MVP поддерживается:
+#   xpLevels: 1
+#   material: "EMERALD"
+#   amount: 2
+#
+# actions (действия, выполняются по порядку):
+#   - type: DAMAGE
+#     amount: 4.0
+#   - type: HEAL
+#     amount: 6.0
+#   - type: POTION
+#     effect: "SPEED"            # имя эффекта Bukkit (пример: SPEED, INCREASE_DAMAGE)
+#     duration: 5                 # секунды (или используй durationTicks)
+#     durationTicks: 100
+#     amplifier: 1
+#     ambient: false
+#     particles: true
+#     icon: true
+#   - type: DASH
+#     power: 1.2
+#     keepY: true
+#
+#   - type: MESSAGE
+#     text: "&aHello, {player}!"
+#     mode: "CHAT"               # CHAT | ACTIONBAR | TITLE
+#   - type: ACTIONBAR
+#     text: "&eCooldown..."
+#   - type: TITLE
+#     title: "&6Title"
+#     subtitle: "&fSubtitle"
+#     fadeIn: 10
+#     stay: 40
+#     fadeOut: 10
+#   - type: COMMAND
+#     executor: "CONSOLE"        # CONSOLE | PLAYER
+#     command: "say {player} кастует {skill}"
+#   - type: TELEPORT
+#     to: "CENTER"               # CASTER | TARGET | CENTER | LOCATION
+#     # для LOCATION:
+#     world: "world"
+#     x: 0
+#     y: 100
+#     z: 0
+#   - type: KNOCKBACK
+#     strength: 1.0
+#     y: 0.35
+#   - type: PULL
+#     strength: 1.0
+#     y: 0.35
+#   - type: SET_FIRE
+#     seconds: 3
+#   - type: EXPLOSION
+#     power: 2.0
+#     setFire: false
+#     breakBlocks: false
+#     damageEntities: true
+#   - type: GIVE_ITEM
+#     material: "EMERALD"
+#     amount: 1
+#   - type: TAKE_ITEM
+#     material: "EMERALD"
+#     amount: 1
+#   - type: SPAWN_ENTITY
+#     entity: "ZOMBIE"
+#     count: 1
+#
+#   - type: PARTICLES
+#     particle: "CRIT"
+#     count: 10
+#     # Куда спавнить частицы:
+#     at: "CENTER"               # CASTER | TARGET | CENTER
+#     # Смещения:
+#     offset: 0.2                # общий offset (если не заданы offsetX/Y/Z)
+#     offsetX: 0.2
+#     offsetY: 0.2
+#     offsetZ: 0.2
+#     speed: 0                   # скорость/extra параметр Bukkit (зависит от типа частицы)
+#     show_all_players: false    # показывать всем игрокам (Paper)
+#     # Для красной пыли (Particle.DUST / DUST_COLOR_TRANSITION):
+#     color: "#ff0000"           # или "255,0,0" или int RGB
+#     toColor: "#ffffff"         # только для DUST_COLOR_TRANSITION
+#     size: 1.0
+#
+#   - type: SOUND
+#     sound: "ENTITY_PLAYER_LEVELUP"
+#     volume: 1.0
+#     pitch: 1.0
+#     category: "MASTER"         # опционально (SoundCategory)
+#     mode: "WORLD"              # WORLD | CASTER | TARGETS
+#     at: "CENTER"               # CASTER | TARGET | CENTER
+id: template
+name: "Template Skill"
+
+trigger:
+  type: COMMAND
+  command: "template"
+
+target:
+  type: SELF
+
+cooldown: 5s
+
+conditions:
+  # cooldown проверяется автоматически, если задан параметр cooldown
+
+actions:
+  - type: PARTICLES
+    particle: "CRIT"
+  - type: SOUND
+    sound: "ENTITY_PLAYER_LEVELUP"

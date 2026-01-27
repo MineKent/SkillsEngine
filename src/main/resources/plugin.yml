@@ -1,0 +1,16 @@
+name: SkillsEngine
+version: '1.0-SNAPSHOT'
+main: mk.skillsengine.SkillsEngine
+api-version: '1.21'
+
+commands:
+  se:
+    description: SkillsEngine main command
+    usage: /se
+    permission: skillsengine.admin
+
+permissions:
+  skillsengine.admin:
+    default: op
+  skillsengine.example:
+    default: true
