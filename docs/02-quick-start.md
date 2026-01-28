@@ -1,3 +1,7 @@
+---
+icon: power-off
+---
+
 # Быстрый старт
 
 ## Установка
@@ -8,17 +12,17 @@
 
 После первого запуска появятся:
 
-- `plugins/SkillsEngine/config.yml`
-- `plugins/SkillsEngine/skills/example.yml`
+* `plugins/SkillsEngine/config.yml`
+* `plugins/SkillsEngine/skills/example.yml`
 
 ## Команды
 
-- `/se reload` — перезагрузить все навыки из папки `plugins/SkillsEngine/skills/`.
-- `/se cast <skillId> [player]` — принудительно кастануть навык (для тестов).
+* `/se reload` — перезагрузить все навыки из папки `plugins/SkillsEngine/skills/`.
+* `/se cast <skillId> [player]` — принудительно кастануть навык (для тестов).
 
 Права:
 
-- `skillsengine.admin` — доступ к `/se` (админские команды).
+* `skillsengine.admin` — доступ к `/se` (админские команды).
 
 ## Проверка, что всё работает
 
@@ -28,10 +32,10 @@
 
 Если не работает:
 
-- включите `debug: true` в `config.yml` и перезапустите сервер
-- выполните `/se reload` и проверьте предупреждения/ошибки в чате и консоли
+* включите `debug: true` в `config.yml` и перезапустите сервер
+* выполните `/se reload` и проверьте предупреждения/ошибки в чате и консоли
 
 ## Дальше
 
-- [Формат навыков: Общее](Настройки%20навыков/01-Общее.md)
-- [config.yml](03-config.md)
+* [Формат навыков: Общее](<Настройки навыков/01-Общее.md>)
+* [config.yml](03-config.md)
