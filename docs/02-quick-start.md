@@ -13,11 +13,12 @@ icon: power-off
 После первого запуска появятся:
 
 * `plugins/SkillsEngine/config.yml`
-* `plugins/SkillsEngine/skills/example.yml`
+* `plugins/SkillsEngine/skills/`
+* `plugins/SkillsEngine/skills/example.yml` *(только на самом первом запуске, когда папки плагина ещё не было)*
 
 ## Команды
 
-* `/se reload` — перезагрузить все навыки из папки `plugins/SkillsEngine/skills/`.
+* `/se reload` — перезагрузить навыки **из источников**, перечисленных в `config.yml -> skills.sources`.
 * `/se cast <skillId> [player]` — принудительно кастануть навык (для тестов).
 
 Права:
